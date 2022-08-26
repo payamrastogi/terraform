@@ -1,0 +1,2 @@
+- https://github.com/jzbruno/terraform-aws-lex-examples
+- https://www.youtube.com/watch?v=KTa1T14nkbw
