@@ -1,51 +1,55 @@
-resource "aws_iam_role" "test_role" {
-  name               = "test_role"
-  assume_role_policy = data.aws_iam_policy_document.glue-assume-role-policy.json
-}
-
-data "aws_iam_policy_document" "glue-assume-role-policy" {
-  statement {
-    actions = ["sts:AssumeRole"]
-    #who can assume this role
-    principals {
-      type        = "Service"
-      identifiers = ["glue.amazonaws.com"]
-    }
-  }
-}
-
-resource "aws_iam_policy" "extra-policy" {
-  name        = "extra-policy"
-  description = "A test policy"
-  policy      = data.aws_iam_policy_document.extra-policy-document.json
-
-}
-
-#policy to access S3 bucket
-data "aws_iam_policy_document" "extra-policy-document" {
-  statement {
-    actions = [
-    "s3:GetBucketLocation", "s3:ListBucket", "s3:ListAllMyBuckets", "s3:GetBucketAcl", "s3:GetObject"]
-    resources = [
-      "arn:aws:s3:::${var.datalake_s3_bucket_name}",
-      "arn:aws:s3:::${var.datalake_s3_bucket_name}/*"
+resource "aws_iam_role" "aws_iam_glue_role" {
+  name = "AWSGlueServiceRoleDefault"
+  #who can assume this role
+  assume_role_policy = <<EOF
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Action": "sts:AssumeRole",
+        "Principal": {
+          "Service": "glue.amazonaws.com"
+        },
+        "Effect": "Allow",
+        "Sid": ""
+      }
     ]
   }
+  EOF
 }
 
-#attach the policy with the test role
-resource "aws_iam_role_policy_attachment" "extra-policy-attachment" {
-  role       = aws_iam_role.test_role.name
-  policy_arn = aws_iam_policy.extra-policy.arn
+# attach the policy to the role
+resource "aws_iam_role_policy_attachment" "glue_service_attachment" {
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole"
+  role = aws_iam_role.aws_iam_glue_role.id
 }
 
+## policy to allow actions on S3
+resource "aws_iam_role_policy" "s3_policy" {
+  name = "s3_policy"
+  role = aws_iam_role.aws_iam_glue_role.id
 
-resource "aws_iam_role_policy_attachment" "glue-service-role-attachment" {
-  role       = aws_iam_role.test_role.name
-  policy_arn = data.aws_iam_policy.AWSGlueServiceRole.arn
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:*"
+      ],
+      "Resource": [
+        "arn:aws:s3:::${var.bucket_for_glue}",
+        "arn:aws:s3:::${var.bucket_for_glue}/*"
+      ]
+    }
+  ]
+}
+EOF
 }
 
-#Glue service role
-data "aws_iam_policy" "AWSGlueServiceRole" {
-  arn = "arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole"
+resource "aws_iam_role_policy" "glue_service_s3" {
+  name = "glue_service_s3"
+  role = aws_iam_role.aws_iam_glue_role.id
+  policy = aws_iam_role_policy.s3_policy.policy
 }
