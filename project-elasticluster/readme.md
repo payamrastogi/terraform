@@ -1,0 +1,1 @@
+-  https://hands-on.cloud/terraform-recipe-how-to-create-aws-elasticsearch-cluster/
