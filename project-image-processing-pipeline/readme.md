@@ -22,5 +22,22 @@ The Step Functions workflow manages the flow of processing steps, ensuring that 
 The processed images are stored in S3 for later retrieval.
 
 
+##### 
+```shell
+terraform init
+terraform validate
+terraform plan
+terraform apply --auto-approve
+```
+
+
+###### References
+- https://computingforgeeks.com/how-to-install-terraform-on-ubuntu/
+- https://aws.amazon.com/premiumsupport/knowledge-center/api-gateway-upload-image-s3/
+- https://hands-on.cloud/terraform-api-gateway/
+- https://github.com/umavanth21/terraform-aws-ec2-instance/blob/v2.12.0/examples/s3-api-gateway-integration/main.tf
+
+
+
 
 
