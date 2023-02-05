@@ -40,6 +40,8 @@ terraform apply --auto-approve
 - https://www.geeksforgeeks.org/image-processing-in-python-scaling-rotating-shifting-and-edge-detection/
 - https://www.geeksforgeeks.org/python-image-blurring-using-opencv/?ref=lbp
 - https://stackoverflow.com/questions/60048149/how-to-convert-png-to-jpg-in-python
+- https://medium.com/brlink/how-to-create-a-python-layer-in-aws-lambda-287235215b79
+- https://stackoverflow.com/questions/55908650/how-to-fix-clienterror-an-error-occurred-403-when-calling-the-headobject-ope
 
 
 

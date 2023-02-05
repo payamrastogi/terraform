@@ -12,3 +12,12 @@ resource "aws_s3_bucket_acl" "image_processing" {
   acl    = "private"
 }
 
+#Test Object
+resource "aws_s3_object" "test" {
+  depends_on = [aws_s3_bucket.image_processing]
+  bucket = var.s3_bucket_prefix
+  key    = "uploads/image.png"
+  source = "${path.module}/../../data/image.png"
+  etag   = filemd5("${path.module}/../../data/image.png")
+}
+

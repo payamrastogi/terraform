@@ -12,11 +12,13 @@ resource "aws_iam_role" "lambda_resize" {
 data aws_iam_policy_document "s3_uploads_read" {
   statement {
     actions = [
+      "s3:HeadObject",
       "s3:GetObject",
       "s3:GetObjectAcl"
     ]
     resources = [
-      "arn:aws:s3:::image_processing/uploads"
+      "arn:aws:s3:::image-processing-20230204/uploads",
+      "arn:aws:s3:::image-processing-20230204/uploads/*"
     ]
   }
 }
@@ -28,7 +30,7 @@ data aws_iam_policy_document "s3_resized_write" {
       "s3:PutObjectAcl"
     ]
     resources = [
-      "arn:aws:s3:::image_processing/resized"
+      "arn:aws:s3:::image-processing-20230204/resized"
     ]
   }
 }
