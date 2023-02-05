@@ -3,7 +3,7 @@
 variable "s3_bucket_prefix" {
   description = "prefix for all the buckets"
   type = string
-  default = "image-processing"
+  default = "image-processing-20230204"
 }
 
 # s3 bucket upload

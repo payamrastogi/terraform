@@ -25,7 +25,7 @@ resource "aws_api_gateway_integration" "get" {
   # Included because of this issue: https://github.com/hashicorp/terraform/issues/10501
   integration_http_method = "GET"
   # See uri description: https://docs.aws.amazon.com/apigateway/api-reference/resource/integration/
-  uri         = "arn:aws:apigateway:${var.aws_region}:s3:path//"
+  uri         = "arn:aws:apigateway:${var.aws_region}:s3:path//image-processing-20230204"
   credentials = aws_iam_role.s3_full_access.arn
   #request_templates is required to explicitly set the statusCode to an integer value of 200
    request_templates = {
@@ -45,6 +45,9 @@ resource "aws_api_gateway_method_response" "get_200"{
     "method.response.header.Timestamp"      = true
     "method.response.header.Content-Length" = true
     "method.response.header.Content-Type"   = true
+  }
+  response_models = {
+    "application/json" = "Empty"
   }
 }
 

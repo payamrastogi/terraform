@@ -36,7 +36,9 @@ terraform apply --auto-approve
 - https://aws.amazon.com/premiumsupport/knowledge-center/api-gateway-upload-image-s3/
 - https://hands-on.cloud/terraform-api-gateway/
 - https://github.com/umavanth21/terraform-aws-ec2-instance/blob/v2.12.0/examples/s3-api-gateway-integration/main.tf
-
+- https://pypi.org/project/opencv-python/
+- https://www.geeksforgeeks.org/image-processing-in-python-scaling-rotating-shifting-and-edge-detection/
+- https://www.geeksforgeeks.org/python-image-blurring-using-opencv/?ref=lbp
 
 
 
