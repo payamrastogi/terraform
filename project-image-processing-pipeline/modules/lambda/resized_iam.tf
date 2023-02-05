@@ -9,7 +9,7 @@ resource "aws_iam_role" "lambda_resize" {
   }
 }
 
-data aws_iam_policy_document "uploads_read" {
+data aws_iam_policy_document "s3_uploads_read" {
   statement {
     actions = [
       "s3:GetObject",
@@ -36,24 +36,24 @@ data aws_iam_policy_document "s3_resized_write" {
 resource aws_iam_policy "s3_uploads_read" {
   name        = "s3_uploads_bucket_read_policy"
   description = "Permissions to read s3 uploads bucket"
-  policy      = data.aws_iam_policy_document.resized_write.json
+  policy      = data.aws_iam_policy_document.s3_uploads_read.json
 }
 
 resource aws_iam_policy "s3_resized_write" {
   name        = "s3_resized_bucket_write_policy"
   description = "Permissions to write s3 resized bucket"
-  policy      = data.aws_iam_policy_document.resized_write.json
+  policy      = data.aws_iam_policy_document.s3_resized_write.json
 }
 
 
-resource aws_iam_role_policy_attachment "resize" {
-  for_each = toset([
-    aws_iam_policy.s3_uploads_read.arn,
-    aws_iam_policy.s3_resized_write.arn
-  ])
+resource aws_iam_role_policy_attachment "resize_write" {
+  role       = aws_iam_role.lambda_resize.name
+  policy_arn = aws_iam_policy.s3_resized_write.arn
+}
 
-  role       = aws_iam_role.resize.name
-  policy_arn = each.value
+resource aws_iam_role_policy_attachment "resize_read" {
+  role       = aws_iam_role.lambda_resize.name
+  policy_arn = aws_iam_policy.s3_uploads_read.arn
 }
 
 

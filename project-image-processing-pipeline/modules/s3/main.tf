@@ -11,3 +11,4 @@ resource "aws_s3_bucket_acl" "image_processing" {
   bucket = aws_s3_bucket.image_processing.id
   acl    = "private"
 }
+

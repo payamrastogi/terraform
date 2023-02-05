@@ -39,6 +39,7 @@ terraform apply --auto-approve
 - https://pypi.org/project/opencv-python/
 - https://www.geeksforgeeks.org/image-processing-in-python-scaling-rotating-shifting-and-edge-detection/
 - https://www.geeksforgeeks.org/python-image-blurring-using-opencv/?ref=lbp
+- https://stackoverflow.com/questions/60048149/how-to-convert-png-to-jpg-in-python
 
 
 

@@ -1,4 +1,3 @@
-import glob
 import logging
 
 import cv2 as cv

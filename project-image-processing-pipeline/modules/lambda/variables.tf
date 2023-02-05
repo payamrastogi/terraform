@@ -1,3 +1,8 @@
+variable "s3_bucket_image_processing" {
+  description = "Id of the S3 Bucket for this project"
+  type = string
+}
+
 # lambda function name
 variable "lambda_resize" {
   description = "The name of the lambda function responsible for resizing the image"
