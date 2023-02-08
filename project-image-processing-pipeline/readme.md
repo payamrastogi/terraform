@@ -42,7 +42,8 @@ terraform apply --auto-approve
 - https://stackoverflow.com/questions/60048149/how-to-convert-png-to-jpg-in-python
 - https://medium.com/brlink/how-to-create-a-python-layer-in-aws-lambda-287235215b79
 - https://stackoverflow.com/questions/55908650/how-to-fix-clienterror-an-error-occurred-403-when-calling-the-headobject-ope
-
+- https://blog.knoldus.com/how-to-create-aws-sns-using-terraform/
+- https://github.com/aws-samples/serverless-patterns/blob/main/lambda-sfn-terraform/main.tf
 
 
 

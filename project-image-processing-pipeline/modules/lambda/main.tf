@@ -43,51 +43,50 @@ resource "aws_lambda_function" "lambda_resize" {
   }
 }
 
-## Lambda function
-#resource "aws_lambda_function" "lambda_rotate" {
-#  function_name    = var.lambda_rotate_name
-#  s3_bucket        = var.s3_bucket_image_processing
-#  s3_key           = aws_s3_object.lambda.key
-#  filename         = data.archive_file.lambda.output_path
-#  source_code_hash = data.archive_file.lambda.output_base64sha256
-#  handler          = "rotate.handler"
-#  role             = aws_iam_role.lambda_assume_role.arn
-#  runtime          = "python3.8"
-#
-#  lifecycle {
-#    create_before_destroy = true
-#  }
-#}
-#
-## Lambda function
-#resource "aws_lambda_function" "lambda_filter" {
-#  function_name    = var.lambda_filter_name
-#  s3_bucket        = var.s3_bucket_image_processing
-#  s3_key           = aws_s3_object.lambda.key
-#  filename         = data.archive_file.lambda.output_path
-#  source_code_hash = data.archive_file.lambda.output_base64sha256
-#  handler          = "filter.handler"
-#  role             = aws_iam_role.lambda_assume_role.arn
-#  runtime          = "python3.8"
-#
-#  lifecycle {
-#    create_before_destroy = true
-#  }
-#}
-#
-## Lambda function
-#resource "aws_lambda_function" "lambda_convert" {
-#  function_name    = var.lambda_convert_name
-#  s3_bucket        = var.s3_bucket_image_processing
-#  s3_key           = aws_s3_object.lambda.key
-#  filename         = data.archive_file.lambda.output_path
-#  source_code_hash = data.archive_file.lambda.output_base64sha256
-#  handler          = "convert.handler"
-#  role             = aws_iam_role.lambda_assume_role.arn
-#  runtime          = "python3.8"
-#
-#  lifecycle {
-#    create_before_destroy = true
-#  }
-#}
-#
+# Lambda function
+resource "aws_lambda_function" "lambda_rotate" {
+  function_name    = var.lambda_rotate
+  s3_bucket        = var.s3_bucket_image_processing
+  s3_key           = aws_s3_object.lambda.key
+  source_code_hash = data.archive_file.lambda.output_base64sha256
+  handler          = "rotate.handler"
+  role             = aws_iam_role.lambda_rotate.arn
+  runtime          = "python3.8"
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+# Lambda function
+resource "aws_lambda_function" "lambda_convert" {
+  function_name    = var.lambda_convert
+  s3_bucket        = var.s3_bucket_image_processing
+  s3_key           = aws_s3_object.lambda.key
+  source_code_hash = data.archive_file.lambda.output_base64sha256
+  handler          = "convert.handler"
+  role             = aws_iam_role.lambda_convert.arn
+  runtime          = "python3.8"
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+# Lambda function
+resource "aws_lambda_function" "lambda_filter" {
+  function_name    = var.lambda_filter
+  s3_bucket        = var.s3_bucket_image_processing
+  s3_key           = aws_s3_object.lambda.key
+  source_code_hash = data.archive_file.lambda.output_base64sha256
+  handler          = "filter.handler"
+  role             = aws_iam_role.lambda_filter.arn
+  runtime          = "python3.8"
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+
+

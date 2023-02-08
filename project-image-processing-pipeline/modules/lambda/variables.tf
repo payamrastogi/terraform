@@ -1,6 +1,6 @@
 variable "s3_bucket_image_processing" {
   description = "Id of the S3 Bucket for this project"
-  type = string
+  type        = string
 }
 
 # lambda function name
@@ -26,6 +26,11 @@ variable "lambda_filter" {
   description = "The name of the lambda function to apply filter to the image"
   type = string
   default = "filter"
+}
+
+variable "step_function_arn" {
+  description = "Step function arn"
+  type = string
 }
 
 
