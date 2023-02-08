@@ -22,7 +22,7 @@ def resize(file_name):
         response = s3_client.head_object(Bucket=S3_BUCKET_NAME,Key=object_key)
         LOGGER.info(response['ContentLength'])
         s3_client.download_file(S3_BUCKET_NAME, object_key, 'image.png')
-        response = s3_client.upload_file('image.png', S3_BUCKET_NAME, 'resize/image.png')
+        response = s3_client.upload_file('image.png', S3_BUCKET_NAME, 'resized/image.png')
         # LOGGER.info(file_content)
         # img = cv2.imread(file_name)
         # # Get number of pixel horizontally and vertically.

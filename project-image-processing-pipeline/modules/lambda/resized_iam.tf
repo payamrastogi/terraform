@@ -30,7 +30,8 @@ data aws_iam_policy_document "s3_resized_write" {
       "s3:PutObjectAcl"
     ]
     resources = [
-      "arn:aws:s3:::image-processing-20230204/resized"
+      "arn:aws:s3:::image-processing-20230204/resized",
+      "arn:aws:s3:::image-processing-20230204/resized/*"
     ]
   }
 }
