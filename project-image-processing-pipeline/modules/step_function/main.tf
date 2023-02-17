@@ -5,7 +5,7 @@ resource "aws_sfn_state_machine" "this" {
   definition = <<EOF
   {
     "Comment": "Invoke AWS Lambda from AWS Step Functions with Terraform",
-    "StartAt": "HelloWorld",
+    "StartAt": "Resize Image",
     "States": {
       "Resize Image": {
         "Type": "Task",
@@ -22,7 +22,7 @@ resource "aws_sfn_state_machine" "this" {
         "Resource": "${var.lambda_convert_arn}",
         "Next": "Filter Image"
       },
-      "Convert Image": {
+      "Filter Image": {
         "Type": "Task",
         "Resource": "${var.lambda_filter_arn}",
         "End": true

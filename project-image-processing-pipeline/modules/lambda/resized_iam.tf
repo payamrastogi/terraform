@@ -1,6 +1,6 @@
 # Resize Lambda IAM assume role
 resource "aws_iam_role" "lambda_resize" {
-  name               = var.lambda_resize
+  name               =  var.lambda_resize
   #policy for who can assume this role
   assume_role_policy = data.aws_iam_policy_document.this.json
 

@@ -28,9 +28,3 @@ variable "lambda_filter" {
   default = "filter"
 }
 
-variable "step_function_arn" {
-  description = "Step function arn"
-  type = string
-}
-
-

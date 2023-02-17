@@ -9,10 +9,10 @@ module "s3" {
 module "lambda" {
   source = "./modules/lambda"
   s3_bucket_image_processing = module.s3.s3_bucket_image_processing
-  step_function_arn = module.step_function.step_function_arn
 }
 
 module "step_function" {
+  depends_on = [module.lambda]
   source  = "./modules/step_function"
   lambda_resize_arn = module.lambda.lambda_resize_arn
   lambda_rotate_arn = module.lambda.lambda_rotate_arn
